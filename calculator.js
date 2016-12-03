@@ -41,42 +41,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
         lastValue = 0;
         updateDisplay();
     };
-    document.getElementById('add').onclick = function () {
-        if (changed === false) {
+    
+    var operationCallback = function (clickEvent) {
+		if (changed === false) {
             memValue = value;
             value = 0;
         }
-        operation = "add";
+        operation = clickEvent.target.id;
         changed = true;
         updateDisplay();
-    };
-    document.getElementById('sub').onclick = function () {
-        if (changed === false) {
-            memValue = value;
-            value = 0;
-        }
-        operation = "sub";
-        changed = true;
-        updateDisplay();
-    };
-    document.getElementById('mul').onclick = function () {
-        if (changed === false) {
-            memValue = value;
-            value = 0;
-        }
-        operation = "mul";
-        changed = true;
-        updateDisplay();
-    };
-    document.getElementById('div').onclick = function () {
-        if (changed === false) {
-            memValue = value;
-            value = 0;
-        }
-        operation = "div";
-        changed = true;
-        updateDisplay();
-    };
+	};
+	['add', 'sub', 'mul', 'div'].forEach(function(operation) {
+		document.getElementById(operation).onclick = operationCallback;
+	});
     document.getElementById('result').onclick = function () {
 		if (changed === true) {
 			lastValue = value;
