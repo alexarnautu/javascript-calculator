@@ -78,38 +78,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
         update_display();
     };
     document.getElementById('result').onclick = function () {
-        if (operation === "add") {
-            if (changed === true) {
-                last_value = value;
-                value = mem_value;
-            }
-
-            value += last_value;
-        }
-        if (operation === "sub") {
-            if (changed === true) {
-                last_value = value;
-                value = mem_value;
-            }
-
-            value -= last_value;
-        }
-        if (operation === "mul") {
-            if (changed === true) {
-                last_value = value;
-                value = mem_value;
-            }
-
-            value *= last_value;
-        }
-        if (operation === "div") {
-            if (changed === true) {
-                last_value = value;
-                value = mem_value;
-            }
-
-            value /= last_value;
-        }
+		if (changed === true) {
+			last_value = value;
+			value = mem_value;
+		}
+		switch (operation) {
+			case 'add':
+				value += last_value;
+				break;
+			case 'sub':
+				value -= last_value;
+				break;
+			case 'mul':
+				value *= last_value;
+				break;
+			case 'div':
+				value /= last_value;
+				break;
+		}
         changed = false;
         update_display();
     };
