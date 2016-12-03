@@ -19,46 +19,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
     inputDisplay = document.getElementById('display');
 
     // Events for number buttons
-    document.getElementById('zero').onclick = function () {
-        value = value * 10 + 0;
-        update_display();
-    };
-    document.getElementById('one').onclick = function () {
-        value = value * 10 + 1;
-        update_display();
-    };
-    document.getElementById('two').onclick = function () {
-        value = value * 10 + 2;
-        update_display();
-    };
-    document.getElementById('three').onclick = function () {
-        value = value * 10 + 3;
-        update_display();
-    };
-    document.getElementById('four').onclick = function () {
-        value = value * 10 + 4;
-        update_display();
-    };
-    document.getElementById('five').onclick = function () {
-        value = value * 10 + 5;
-        update_display();
-    };
-    document.getElementById('six').onclick = function () {
-        value = value * 10 + 6;
-        update_display();
-    };
-    document.getElementById('seven').onclick = function () {
-        value = value * 10 + 7;
-        update_display();
-    };
-    document.getElementById('eight').onclick = function () {
-        value = value * 10 + 8;
-        update_display();
-    };
-    document.getElementById('nine').onclick = function () {
-        value = value * 10 + 9;
-        update_display();
-    };
+    var numberMap = {
+		zero: 	0, one: 	1,
+		two: 	2, three: 	3,
+		four: 	4, five: 	5,
+		six: 	6, seven: 	7,
+		eight: 	8, nine: 	9
+	};
+	var handleNumberButtonClick = function (clickEvent) {
+		value = value * 10 + numberMap[clickEvent.target.id];
+		update_display();
+	};
+	for (var numberButton in numberMap) {
+		document.getElementById(numberButton).onclick = handleNumberButtonClick;
+	}
 
     // Events for operation buttons
     document.getElementById('clear').onclick = function () {
