@@ -1,16 +1,16 @@
 "use strict";
 var value = 0;
 var changed = false;
-var mem_value = 0;
-var last_value = 0;
+var memValue = 0;
+var lastValue = 0;
 var operation = "none";
 var inputDisplay;
 
-function update_display() {
+function updateDisplay() {
     inputDisplay.value = value;
 }
 
-function clear_display() {
+function clearDisplay() {
     inputDisplay.value = "0";
 }
 
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	};
 	var handleNumberButtonClick = function (clickEvent) {
 		value = value * 10 + numberMap[clickEvent.target.id];
-		update_display();
+		updateDisplay();
 	};
 	for (var numberButton in numberMap) {
 		document.getElementById(numberButton).onclick = handleNumberButtonClick;
@@ -37,67 +37,67 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // Events for operation buttons
     document.getElementById('clear').onclick = function () {
         value = 0;
-        mem_value = 0;
-        last_value = 0;
-        update_display();
+        memValue = 0;
+        lastValue = 0;
+        updateDisplay();
     };
     document.getElementById('add').onclick = function () {
         if (changed === false) {
-            mem_value = value;
+            memValue = value;
             value = 0;
         }
         operation = "add";
         changed = true;
-        update_display();
+        updateDisplay();
     };
     document.getElementById('sub').onclick = function () {
         if (changed === false) {
-            mem_value = value;
+            memValue = value;
             value = 0;
         }
         operation = "sub";
         changed = true;
-        update_display();
+        updateDisplay();
     };
     document.getElementById('mul').onclick = function () {
         if (changed === false) {
-            mem_value = value;
+            memValue = value;
             value = 0;
         }
         operation = "mul";
         changed = true;
-        update_display();
+        updateDisplay();
     };
     document.getElementById('div').onclick = function () {
         if (changed === false) {
-            mem_value = value;
+            memValue = value;
             value = 0;
         }
         operation = "div";
         changed = true;
-        update_display();
+        updateDisplay();
     };
     document.getElementById('result').onclick = function () {
 		if (changed === true) {
-			last_value = value;
-			value = mem_value;
+			lastValue = value;
+			value = memValue;
 		}
 		switch (operation) {
 			case 'add':
-				value += last_value;
+				value += lastValue;
 				break;
 			case 'sub':
-				value -= last_value;
+				value -= lastValue;
 				break;
 			case 'mul':
-				value *= last_value;
+				value *= lastValue;
 				break;
 			case 'div':
-				value /= last_value;
+				value /= lastValue;
 				break;
 		}
         changed = false;
-        update_display();
+        updateDisplay();
     };
 
 });
